@@ -45,7 +45,7 @@ const Error = styled.div`
   margin-bottom: 2rem;
 `;
 
-const Formulario = ({ guardarResumen }) => {
+const Formulario = ({ guardarResumen, guardarCargando }) => {
   const [datos, guardarDatos] = useState({
     marca: "",
     year: "",
@@ -88,11 +88,17 @@ const Formulario = ({ guardarResumen }) => {
 
     resultado = parseFloat(calculaPlan(plan) * resultado).toFixed(2);
 
-    guardarResumen({
-      cotizacion: resultado,
-      datos,
-    });
-  };
+    guardarCargando(true);
+
+    setTimeout(() =>{
+      guardarCargando(false);
+
+      guardarResumen({
+        cotizacion: resultado,
+        datos,
+      });
+    },1000);
+  }
   return (
     <form onSubmit={cotizarSeguro}>
       {error ? <Error>Todos los campos son obligatorios</Error> : null}
