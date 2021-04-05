@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import PropTypes from 'prop-types';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const Mensaje = styled.p`
@@ -30,17 +31,20 @@ const Resultado = ({ cotizacion }) => {
     <Mensaje>Elige marca, año y tipo de seguro</Mensaje>
   ) : (
     <ResCotizacion>
-      <TransitionGroup component="p" className="resultado">
+      <TransitionGroup component="span" className="resultado">
         <CSSTransition
           classNames="resultado"
           key={cotizacion}
           timeout={{ enter: 500, exit: 500 }}
         >
-          <TxtCotizacion>El total es: ${cotizacion}</TxtCotizacion>
+          <TxtCotizacion>El total es: $<span>{cotizacion}</span></TxtCotizacion>
         </CSSTransition>
       </TransitionGroup>
     </ResCotizacion>
   );
 };
 
+Resultado.propTypes = {
+  cotizacion: PropTypes.number.isRequired
+}
 export default Resultado;

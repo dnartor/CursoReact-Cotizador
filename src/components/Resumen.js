@@ -1,6 +1,8 @@
 import React from "react";
-import {capitalize} from '../Helper'
-import styled from '@emotion/styled'
+import {capitalize} from '../Helper';
+import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
+
 
 const Contenedor = styled.div `
     padding: 1rem;
@@ -28,4 +30,7 @@ const Resumen = ({ datos }) => {
   );
 };
 
+Resumen.propTypes = {
+  datos:PropTypes.object.isRequired
+}
 export default Resumen;
